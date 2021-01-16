@@ -1,17 +1,17 @@
 <template>
   <div class="home">
+    <ul class="aside">
+      <li
+        v-for="item in constants.tabList"
+        :key="item.name"
+        @click="handlePushRouter(item.name)"
+      >
+        {{ item.label }}
+      </li>
+    </ul>
+
     <div class="content">
       <router-view />
-    </div>
-    <div class="footer">
-      <!-- <van-tabs v-model="active" @click="handlePushRouter(active)">
-        <van-tab
-          v-for="(item, index) in constants.tabList"
-          :key="index"
-          :title="item.label"
-          :name="item.name"
-        ></van-tab>
-      </van-tabs> -->
     </div>
   </div>
 </template>
@@ -26,8 +26,8 @@ export default {
     };
   },
   methods: {
-    handlePushRouter(v) {
-      this.$router.push({ name: v });
+    handlePushRouter(name) {
+      this.$router.push({ name });
     }
   }
 };
@@ -35,17 +35,22 @@ export default {
 <style lang="scss" scoped>
 .home {
   display: flex;
-  flex-direction: column;
-  position: relative;
-
+  background: #eeeeee;
+  height: 100vh;
+  .aside {
+    width: 150px;
+    padding: 20px 0px 0 0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    li {
+      line-height: 50px;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
+  }
   .content {
     flex: 1;
-  }
-  .footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    height: 40px;
+    padding: 20px;
   }
 }
 </style>

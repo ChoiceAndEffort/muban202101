@@ -1,7 +1,6 @@
 <template>
   <div class="module-one">
     <h3>我是模块一</h3>
-    {{ list }}
     <ul>
       <li v-for="item in list" :key="item.age">
         {{ item.name }}
