@@ -38,7 +38,8 @@ export default {
     getList() {
       this.$store.dispatch("moduleOneStore/find", {
         name: "888888888",
-        age: 123
+        age: 123,
+        fromPage: "moduleOne"
       });
     },
     handlerOpreate() {

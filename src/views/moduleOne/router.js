@@ -3,6 +3,8 @@ export default [
     path: "module-one",
     name: "module-one",
     meta: [],
-    component: () => import("./Index.vue")
+    auth: false,
+    // component: () => import("./Index.vue")
+    component: () => import("@/views/moduleOne/Index.vue")
   }
 ];

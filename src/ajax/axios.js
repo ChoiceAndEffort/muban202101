@@ -17,7 +17,7 @@ instance.interceptors.request.use(
 
     config.data = JSON.stringify(config.data);
     config.headers = {
-      "Content-Type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/json"
     };
 
     return config;
@@ -31,9 +31,23 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   function(response) {
     console.log("请求成功啦...", response);
+    const { fromPage } = response.config;
+    const arr = [
+      {
+        mock: moduleOneMock,
+        page: "moduleOne"
+      }
+    ];
+    let mockList;
+    let obj = arr.find(item => item.page === fromPage);
+    if (obj) {
+      mockList = obj.mock;
+    } else {
+      mockList = [];
+    }
     return {
       status: 200,
-      data: moduleOneMock
+      data: mockList
     };
   },
   function(error) {

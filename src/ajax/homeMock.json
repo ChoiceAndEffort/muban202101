@@ -1,0 +1,24 @@
+{
+	"list": [
+		{
+			"path": "/module-one",
+			"name": "module-one",
+			"component": "/views/moduleOne/Index.vue"
+		},
+		{
+			"path": "/module-two",
+			"name": "module-two",
+			"component": "() => import('@/views/moduleTwo/Index.vue')"
+		},
+		{
+			"path": "/module-three",
+			"name": "module-three",
+			"component": "() => import('@/views/moduleThree/Index.vue')"
+		},
+		{
+			"path": "/module-four",
+			"name": "module-four",
+			"component": "() => import('@/views/moduleFour/Index.vue')"
+		}
+	]
+}
