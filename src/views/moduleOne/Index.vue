@@ -10,7 +10,9 @@
     <div style="display:flex;">
       <div class="oprate-btn" @click="handlerOpreate">更改list</div>
       <div class="oprate-btn" @click="handlerOReset">重置list</div>
+      <div class="oprate-btn" @click="handlerRouterPush">跳到子模块</div>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -47,6 +49,9 @@ export default {
     },
     handlerOReset() {
       this.getList();
+    },
+    handlerRouterPush() {
+      this.$router.push({ name: "one-first" });
     }
   },
   created() {
