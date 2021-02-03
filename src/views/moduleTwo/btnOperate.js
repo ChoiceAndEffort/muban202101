@@ -21,6 +21,7 @@ export default {
   methods: {
     handlerAddClick() {
       console.log("增加");
+      this.$emit("click");
     }
   }
 };
