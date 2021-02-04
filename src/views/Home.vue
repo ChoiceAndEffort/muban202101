@@ -18,7 +18,7 @@
 </template>
 <script>
 import * as constants from "./constants.js";
-import router from "@/router";
+// import router from "@/router";
 export default {
   name: "home",
   data() {
@@ -29,7 +29,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(val, oldVal) {
+      handler: function(val) {
         // console.log(val, oldVal, 1111111);
         this.activeName = val.name;
       },
@@ -53,6 +53,7 @@ export default {
   height: 100vh;
   .aside {
     width: 150px;
+    min-width: 150px;
     padding: 20px 0px 0 0;
     border: 1px solid #ccc;
     cursor: pointer;
