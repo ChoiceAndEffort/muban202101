@@ -1,13 +1,13 @@
 <template>
   <div class="module-two">
-    <btn-operate @click="changeColor" btnName="改变css" />
-    <p style="padding:10px;">
-      <span :style="spanStyle" class="span1">hello world</span>
-    </p>
-
-    <p style="padding:10px;">
-      <span :style="{ '--width': widthVar }" class="span2">hello earth</span>
-    </p>
+    <btn-operate
+      @click="changeColor"
+      btnName="改变背景图"
+      style="margin-bottom:20px;"
+    />
+    <div class="show-background-image" :style="styleObj">
+      我的小猪猪
+    </div>
   </div>
 </template>
 <script>
@@ -17,10 +17,12 @@ import BtnOperate from "./btnOperate"; //方法一
 export default {
   data() {
     return {
-      spanStyle: {
-        "--color": "red"
-      },
-      widthVar: "100px"
+      styleObj: {
+        "--image": `url(
+          "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2482227849,285348882&fm=15&gp=0.jpg"
+        )`,
+        "--opacity": 0.8
+      }
     };
   },
   components: {
@@ -31,34 +33,37 @@ export default {
   },
   methods: {
     changeColor() {
-      this.spanStyle["--color"] = "blue";
-      this.widthVar = "200px";
+      this.styleObj[
+        "--image"
+      ] = `url( "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2903650673,4221977739&fm=26&gp=0.jpg")`;
+      this.styleObj["--opacity"] = 0.3;
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .module-two {
-  .span1 {
-    color: var(--color);
-  }
-  .span2 {
-    text-align: center;
+  .show-background-image {
+    width: 300px;
+    height: 300px;
     position: relative;
-    width: var(--width);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .span2::after {
+  .show-background-image::after {
     content: "";
-    display: block;
     position: absolute;
-    left: 100%;
-    width: var(--width);
-    height: var(--width);
-    border-radius: 50%;
-    border: 2px solid black;
+    background: var(--image);
+    opacity: var(--opacity);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
   .btn {
-    width: 100px;
+    width: 120px;
     color: blue;
     padding: 10px 20px;
     border: 1px solid #ccc;
