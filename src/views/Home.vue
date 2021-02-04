@@ -47,13 +47,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+//定义宽度变量
+$width: 150px;
 .home {
   display: flex;
   background: #eeeeee;
   height: 100vh;
   .aside {
-    width: 150px;
-    min-width: 150px;
+    min-width: $width;
     padding: 20px 0px 0 0;
     border: 1px solid #ccc;
     cursor: pointer;
@@ -68,7 +69,9 @@ export default {
     }
   }
   .content {
-    flex: 1;
+    // CSS3中新增的一个函数，calculate（计算）的缩写。用于动态计算宽/高
+    // width: calc(100% - $width);
+    width: calc(100% - 150px);
     padding: 20px;
   }
 }

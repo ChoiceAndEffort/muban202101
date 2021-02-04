@@ -69,7 +69,7 @@ export default {
 <style lang="scss" scoped>
 .module-one {
   .content-box {
-    width: 1500px;
+    width: 100%;
     overflow: hidden;
     border: 1px solid #ccc;
     border-radius: 10px;
