@@ -44,24 +44,27 @@ export default {
 <style lang="scss" scoped>
 .module-two {
   .show-background-image {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 800px;
     position: relative;
     border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
   }
   .show-background-image::after {
     content: "";
     position: absolute;
     background: var(--image);
     opacity: var(--opacity);
+    background-repeat: no-repeat;
+    background-size: cover;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
   }
+
   .btn {
     width: 120px;
     color: blue;
