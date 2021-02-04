@@ -1,7 +1,7 @@
 export default [
   {
-    path: "one-first",
-    name: "one-first",
+    path: "three-first",
+    name: "three-first",
     meta: [],
     auth: false,
     component: () => import("./Index.vue")

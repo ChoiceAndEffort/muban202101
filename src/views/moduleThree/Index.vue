@@ -1,101 +1,72 @@
 <template>
   <div class="module-three">
-    <div class="content-box">
-      <ul>
-        <li
-          v-for="(item, index) in [...scrollList, ...scrollList]"
-          :key="index"
-        >
-          <img :src="item.img" alt="" srcset="" class="image" />
-          <p>{{ item.name }}</p>
-        </li>
-      </ul>
+    <ul>
+      <li v-for="item in list" :key="item.age">
+        {{ item.name }}
+      </li>
+    </ul>
+    <div style="display:flex;">
+      <div class="oprate-btn" @click="handlerOpreate">更改list</div>
+      <div class="oprate-btn" @click="handlerOReset">重置list</div>
+      <div class="oprate-btn" @click="handlerRouterPush">跳到子模块</div>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
-import a from "@/assets/images/a.jpg";
-import b from "@/assets/images/b.jpg";
-import c from "@/assets/images/c.gif";
-import d from "@/assets/images/d.jpg";
-import e from "@/assets/images/e.jpg";
-import f from "@/assets/images/f.jpg";
-import g from "@/assets/images/g.gif";
+const newList = [
+  {
+    name: "张安",
+    age: 16
+  },
+  {
+    name: "丽岛",
+    age: 18
+  }
+];
 export default {
   data() {
     return {
-      scrollList: [
-        {
-          img: a,
-          name: ""
-        },
-        {
-          img: b,
-          name: ""
-        },
-        {
-          img: c,
-          name: ""
-        },
-        {
-          img: d,
-          name: ""
-        },
-        {
-          img: e,
-          name: ""
-        },
-        {
-          img: f,
-          name: ""
-        },
-        {
-          img: g,
-          name: ""
-        }
-      ]
+      newList: JSON.parse(JSON.stringify(newList))
     };
   },
   computed: {
     ...mapGetters("moduleFourStore", ["list"])
   },
-  created() {},
-  methods: {}
+  created() {
+    this.getList();
+  },
+  methods: {
+    getList() {
+      this.$store.dispatch("moduleFourStore/find", {
+        name: "888888888",
+        age: 123,
+        fromPage: "moduleThree"
+      });
+    },
+    handlerOpreate() {
+      this.$store.commit("moduleFourStore/LIST", this.newList);
+    },
+    handlerOReset() {
+      this.getList();
+    },
+    handlerRouterPush() {
+      this.$router.push({ name: "three-first" });
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
 .module-three {
-  .content-box {
-    width: 600px;
-    height: 200px;
-    overflow: hidden;
+  .oprate-btn {
+    width: 100px;
+    padding: 7px 10px;
     border: 1px solid #ccc;
-  }
-  ul {
-    position: relative;
-    top: 0px;
-    left: 0px;
-    display: flex;
-    animation: mymove 1s infinite linear;
-    li {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .image {
-        width: 300px;
-        height: 200px;
-        border-radius: 10px;
-      }
-    }
-  }
-  @-webkit-keyframes mymove {
-    from {
-      left: 0px;
-    }
-    to {
-      left: -100px;
-    }
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 100px;
   }
 }
 </style>

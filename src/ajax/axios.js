@@ -1,5 +1,5 @@
 import axios from "axios";
-import moduleOneMock from "./moduleOneMock.json";
+import moduleOneMock from "./moduleThreeMock.json";
 const instance = axios.create({
   baseURL: "",
   timeout: 3000
@@ -31,15 +31,16 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   function(response) {
     console.log("请求成功啦...", response);
-    const { fromPage } = response.config;
+    const { fromPage } = response.config.params;
     const arr = [
       {
         mock: moduleOneMock,
-        page: "moduleOne"
+        page: "moduleThree"
       }
     ];
     let mockList;
     let obj = arr.find(item => item.page === fromPage);
+
     if (obj) {
       mockList = obj.mock;
     } else {

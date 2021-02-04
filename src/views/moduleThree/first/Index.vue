@@ -1,6 +1,6 @@
 <template>
   <div class="module-one-one">
-    <h3 style="color:red;">我是模块1-1</h3>
+    <h3 style="color:red;">我是模块3-1</h3>
   </div>
 </template>
 <script>

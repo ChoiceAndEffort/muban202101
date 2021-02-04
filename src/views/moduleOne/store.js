@@ -1,5 +1,5 @@
 import * as api from "./api";
-import oneFirst from "./first/store";
+
 const state = {
   list: [],
   item: {}
@@ -31,8 +31,5 @@ export default {
   state,
   getters,
   mutations,
-  actions,
-  modules: {
-    oneFirst
-  }
+  actions
 };

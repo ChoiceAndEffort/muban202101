@@ -1,4 +1,3 @@
-import oneFirst from "./first/router";
 export default [
   {
     path: "module-one",
@@ -6,7 +5,6 @@ export default [
     meta: [],
     auth: false,
     // component: () => import("./Index.vue")
-    component: () => import("@/views/moduleOne/Index.vue"),
-    children: [...oneFirst]
+    component: () => import("@/views/moduleOne/Index.vue")
   }
 ];
