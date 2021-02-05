@@ -2,7 +2,7 @@
   <div class="module-one">
     <div class="content-box">
       <h3>欢迎来到我的世界</h3>
-      <ul>
+      <ul class="anmatioan-top">
         <li
           v-for="(item, index) in [...scrollList, ...scrollList]"
           :key="index"
@@ -21,11 +21,24 @@
         </div>
       </div>
       <div class="config-area">
-        <div class="show-config">
+        <div class="operate-config">
           <btn-operate @click="handlerShowConfig" btnName="配置区域" />
           <lg-drawer :show-lg-drawer.sync="showLgDrawer">
-            <drag-config />
+            <drag-config @update="handlerChangeDragList" />
           </lg-drawer>
+        </div>
+        <div class="show-config-area">
+          <ul>
+            <template v-for="(item, index) in showConfiglist">
+              <li
+                :key="index"
+                v-if="item.checked"
+                @click="handlerOpreateConfig(item.type)"
+              >
+                <p>{{ item.label }}</p>
+              </li>
+            </template>
+          </ul>
         </div>
       </div>
     </div>
@@ -47,7 +60,8 @@ export default {
     return {
       scrollList,
       INFOMATION,
-      showLgDrawer: false
+      showLgDrawer: false, //是否展示抽屉
+      showConfiglist: [] //展示配置的数据
     };
   },
   computed: {
@@ -56,6 +70,10 @@ export default {
   methods: {
     handlerShowConfig() {
       this.showLgDrawer = true;
+    },
+    handlerChangeDragList(value) {
+      this.showConfiglist = value;
+      this.showLgDrawer = false;
     }
   },
   created() {}
@@ -78,7 +96,7 @@ export default {
     // background-size: 100% 100%;
     background-size: cover;
   }
-  ul {
+  .anmatioan-top {
     position: relative;
     top: 0px;
     left: 0px;
@@ -138,6 +156,35 @@ export default {
     padding: 20px;
     background: #fff;
     border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    .show-config-area {
+      //   width: 100%;
+      ul {
+        display: flex;
+        // width: 60%;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        li {
+          padding: 20px 0px 20px 50px;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+        }
+        li::after {
+          content: "";
+          width: 1px;
+          height: 20px;
+          background: #ccc;
+          margin-left: 50px;
+        }
+        li:last-of-type::after {
+          content: "";
+          width: 0px;
+          height: 0px;
+        }
+      }
+    }
   }
 }
 </style>

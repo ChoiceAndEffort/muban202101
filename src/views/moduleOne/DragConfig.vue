@@ -1,9 +1,9 @@
 <template>
   <div class="drag-config">
-    <el-checkbox-group v-model="checkList">
+    <el-checkbox-group v-model="checkList" @change="handlerChange" :max="4">
       <draggable v-model="dragList">
         <transition-group>
-          <div v-for="(element, index) in dragList" :key="index">
+          <div v-for="element in dragList" :key="element.type">
             <div class="item-edit">
               <div class="drag-icon">
                 <img src="@/assets/images/drag.png" alt="" srcset="" />
@@ -20,6 +20,9 @@
         </transition-group>
       </draggable>
     </el-checkbox-group>
+    <div class="footer">
+      <el-button type="info" plain @click="handlerConfirm">保存</el-button>
+    </div>
   </div>
 </template>
 
@@ -35,35 +38,50 @@ export default {
       dragList: [
         {
           label: "语文课程",
-          checked: false
+          checked: false,
+          type: 1
         },
         {
           label: "数学课程",
-          checked: false
+          checked: false,
+          type: 2
         },
         {
           label: "英语课程",
-          checked: false
+          checked: false,
+          type: 3
         },
         {
           label: "物理课程",
-          checked: false
+          checked: false,
+          type: 4
         },
         {
           label: "化学课程",
-          checked: false
+          checked: false,
+          type: 5
         },
         {
           label: "体育课程",
-          checked: false
+          checked: false,
+          type: 6
         }
       ],
       checkList: []
     };
   },
-  computed: {},
-  watch: {},
-  methods: {},
+  methods: {
+    handlerChange() {
+      this.dragList.forEach(item => {
+        if (this.checkList.map(item => item.type).includes(item.type)) {
+          item.checked = true;
+        }
+      });
+    },
+    handlerConfirm() {
+      this.$emit("update", this.dragList);
+    }
+  },
   created() {},
   mounted() {}
 };
@@ -81,6 +99,12 @@ export default {
       justify-content: space-between;
       padding: 5px 5px;
     }
+  }
+  .footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
