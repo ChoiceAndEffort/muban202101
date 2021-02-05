@@ -10,7 +10,7 @@ export default {
   },
   render() {
     return (
-      <div onClick={this.handlerAddClick} class="btn">
+      <div onClick={this.handlerAddClick} class="pub-btn">
         {this.btnName}
       </div>
     );

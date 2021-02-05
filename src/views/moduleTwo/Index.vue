@@ -13,7 +13,7 @@
 <script>
 //css中获取js中的变量动态修改样式
 import { mapGetters } from "vuex";
-import BtnOperate from "./btnOperate"; //方法一
+import BtnOperate from "@/utils/btnOperate";
 export default {
   data() {
     return {
@@ -26,7 +26,7 @@ export default {
     };
   },
   components: {
-    BtnOperate //方法一导入
+    BtnOperate
   },
   computed: {
     ...mapGetters("moduleFourStore", ["list"])
@@ -63,16 +63,6 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-  }
-
-  .btn {
-    width: 120px;
-    color: blue;
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-    text-align: center;
-    border-radius: 10px;
-    cursor: pointer;
   }
 }
 </style>
