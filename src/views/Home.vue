@@ -73,6 +73,7 @@ $width: 150px;
     // width: calc(100% - $width);
     width: calc(100% - 150px);
     padding: 20px;
+    min-width: 1300px;
   }
 }
 </style>

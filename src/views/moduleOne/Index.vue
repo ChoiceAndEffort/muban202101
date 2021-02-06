@@ -28,17 +28,31 @@
           </lg-drawer>
         </div>
         <div class="show-config-area">
-          <ul>
-            <template v-for="(item, index) in showConfiglist">
-              <li
-                :key="index"
-                v-if="item.checked"
-                @click="handlerOpreateConfig(item.type)"
-              >
-                <p>{{ item.label }}</p>
-              </li>
-            </template>
-          </ul>
+          <div class="area-top">
+            <div class="avator">
+              <img
+                src="@/assets/images/leader.jpg"
+                alt=""
+                srcset=""
+                style="width:60px;height:60px;border-radius:40px"
+              />
+              <div style="margin-left:20px;">
+                <p>刘秀</p>
+                <p>位面之子</p>
+              </div>
+            </div>
+            <ul>
+              <template v-for="(item, index) in showConfiglist">
+                <li
+                  :key="index"
+                  v-if="item.checked"
+                  @click="handlerOpreateConfig(item.type)"
+                >
+                  <p>{{ item.label }}</p>
+                </li>
+              </template>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -159,11 +173,27 @@ export default {
     display: flex;
     justify-content: space-between;
     .show-config-area {
-      //   width: 100%;
+      width: 100%;
+      margin-left: 30px;
+
+      .area-top {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid #ccc;
+        padding: 10px 30px;
+        border-radius: 10px;
+        .avator {
+          display: flex;
+        }
+        p {
+          margin-bottom: 10px;
+        }
+      }
       ul {
         display: flex;
         // width: 60%;
-        border: 1px solid #ccc;
+        height: 60px;
+        // border: 1px solid #ccc;
         border-radius: 10px;
         li {
           padding: 20px 0px 20px 50px;
@@ -185,6 +215,12 @@ export default {
         }
       }
     }
+    // .show-config-area::after {
+    //   content: "";
+    //   height: 0;
+    //   clear: both;
+    //   display: block;
+    // }
   }
 }
 </style>
