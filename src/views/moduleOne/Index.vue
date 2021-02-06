@@ -53,6 +53,10 @@
               </template>
             </ul>
           </div>
+          <div class="area-main">
+            <tab1 />
+            <tab1 />
+          </div>
         </div>
       </div>
     </div>
@@ -63,12 +67,14 @@ import { mapGetters } from "vuex";
 import { scrollList, INFOMATION } from "./constants";
 import BtnOperate from "@/utils/btnOperate";
 import LgDrawer from "@/components/LgDrawer";
-import DragConfig from "./DragConfig";
+import DragConfig from "./components/DragConfig";
+import Tab1 from "./components/Tab1";
 export default {
   components: {
     BtnOperate,
     LgDrawer,
-    DragConfig
+    DragConfig,
+    Tab1
   },
   data() {
     return {
@@ -107,7 +113,6 @@ export default {
     font-size: 30px;
     background: url("../../assets/images/top.png");
     background-repeat: no-repeat;
-    // background-size: 100% 100%;
     background-size: cover;
   }
   .anmatioan-top {
@@ -115,7 +120,7 @@ export default {
     top: 0px;
     left: 0px;
     display: flex;
-    animation: mymove 10s infinite linear;
+    // animation: mymove 10s infinite linear;
     li {
       display: flex;
       align-items: center;
@@ -215,12 +220,9 @@ export default {
         }
       }
     }
-    // .show-config-area::after {
-    //   content: "";
-    //   height: 0;
-    //   clear: both;
-    //   display: block;
-    // }
+  }
+  .area-main {
+    margin-top: 20px;
   }
 }
 </style>
