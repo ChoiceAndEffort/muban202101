@@ -9,7 +9,7 @@
                 <img src="@/assets/images/drag.png" alt="" srcset="" />
                 <img src="@/assets/images/point.png" alt="" srcset="" />
               </div>
-              <el-checkbox :label="element">
+              <el-checkbox :label="element.type">
                 <el-input
                   v-model.trim="element.label"
                   :maxlength="8"
@@ -67,15 +67,17 @@ export default {
           type: 6
         }
       ],
-      checkList: []
+      checkList: [1, 2, 3, 4]
     };
   },
   methods: {
     handlerChange() {
       this.dragList.forEach(item => {
-        if (this.checkList.map(item => item.type).includes(item.type)) {
+        if (this.checkList.includes(item.type)) {
           item.checked = true;
+          return;
         }
+        item.checked = false;
       });
     },
     handlerConfirm() {

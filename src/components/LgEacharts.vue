@@ -22,6 +22,11 @@ export default {
       myChart: undefined
     };
   },
+  computed: {
+    // dealOptions() {
+    //   return {};
+    // }
+  },
   methods: {
     initEcharts() {
       //   if (myChart != null && myChart != "" && myChart != undefined) {

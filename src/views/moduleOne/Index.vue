@@ -42,7 +42,11 @@
               </div>
             </div>
             <ul>
-              <template v-for="(item, index) in showConfiglist">
+              <template
+                v-for="(item, index) in showConfiglist.length
+                  ? showConfiglist
+                  : defaultConfigList"
+              >
                 <li
                   :key="index"
                   v-if="item.checked"
@@ -54,8 +58,10 @@
             </ul>
           </div>
           <div class="area-main">
-            <tab1 />
-            <tab1 />
+            <tab1 v-if="type === 1" />
+            <tab2 v-if="type === 2" />
+            <tab3 v-if="type === 3" />
+            <tab4 v-if="type === 4" />
           </div>
         </div>
       </div>
@@ -69,31 +75,76 @@ import BtnOperate from "@/utils/btnOperate";
 import LgDrawer from "@/components/LgDrawer";
 import DragConfig from "./components/DragConfig";
 import Tab1 from "./components/Tab1";
+import Tab2 from "./components/Tab2";
+import Tab3 from "./components/Tab3";
+import Tab4 from "./components/Tab4";
 export default {
   components: {
     BtnOperate,
     LgDrawer,
     DragConfig,
-    Tab1
+    Tab1,
+    Tab2,
+    Tab3,
+    Tab4
   },
   data() {
     return {
-      scrollList,
+      scrollList, //头部动画滚动展示的列表
       INFOMATION,
       showLgDrawer: false, //是否展示抽屉
-      showConfiglist: [] //展示配置的数据
+      defaultConfigList: [
+        {
+          label: "语文课程",
+          checked: true,
+          type: 1
+        },
+        {
+          label: "数学课程",
+          checked: true,
+          type: 2
+        },
+        {
+          label: "英语课程",
+          checked: true,
+          type: 3
+        },
+        {
+          label: "物理课程",
+          checked: true,
+          type: 4
+        },
+        {
+          label: "化学课程",
+          checked: false,
+          type: 5
+        },
+        {
+          label: "体育课程",
+          checked: false,
+          type: 6
+        }
+      ],
+      showConfiglist: [], //展示配置的数据
+      type: 1 //区分展示内容
     };
   },
   computed: {
     ...mapGetters("moduleOneStore", ["list", "item"])
   },
   methods: {
+    //显示配置的抽屉
     handlerShowConfig() {
       this.showLgDrawer = true;
     },
+    //关闭配置抽屉给页面传递数据
     handlerChangeDragList(value) {
       this.showConfiglist = value;
       this.showLgDrawer = false;
+    },
+    //点击展示配置的区域
+    handlerOpreateConfig(type) {
+      this.type = type;
     }
   },
   created() {}
