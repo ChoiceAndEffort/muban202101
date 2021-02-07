@@ -60,8 +60,9 @@
             </ul>
           </div>
           <div class="area-main">
-            <tab1 v-if="type === 1" />
-            <tab2 v-if="type === 2" />
+            <!-- 这个地方故意交叉下,让数学课程展示图表 -->
+            <tab1 v-if="type === 2" />
+            <tab2 v-if="type === 1" />
             <tab3 v-if="type === 3" />
             <tab4 v-if="type === 4" />
           </div>
