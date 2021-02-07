@@ -174,7 +174,7 @@ export default {
     top: 0px;
     left: 0px;
     display: flex;
-    // animation: mymove 10s infinite linear;
+    animation: mymove 10s infinite linear;
     li {
       display: flex;
       align-items: center;
