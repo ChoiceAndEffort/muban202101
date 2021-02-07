@@ -225,6 +225,8 @@ export default {
   }
 
   .config-area {
+    // height: 650px;
+    // overflow-y: auto;
     width: calc(100% - 200px);
     padding: 20px;
     background: #fff;

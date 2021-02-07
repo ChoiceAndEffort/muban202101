@@ -7,7 +7,7 @@
       type="text"
       v-model="readValue"
       @blur="playVoice(readValue)"
-      style="width:150px;"
+      style="width:200px;"
       placeholder="请输入你要朗读的语音!"
     />
     <el-button @click="handleStop">停止播放语音</el-button>
