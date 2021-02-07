@@ -41,7 +41,7 @@
                 <p>位面之子</p>
               </div>
             </div>
-            <ul>
+            <ul class="tab-ul">
               <template
                 v-for="(item, index) in showConfiglist.length
                   ? showConfiglist
@@ -52,7 +52,9 @@
                   v-if="item.checked"
                   @click="handlerOpreateConfig(item.type)"
                 >
-                  <p>{{ item.label }}</p>
+                  <p :class="{ tabActive: type === item.type }">
+                    {{ item.label }}
+                  </p>
                 </li>
               </template>
             </ul>
@@ -226,8 +228,10 @@ export default {
     padding: 20px;
     background: #fff;
     border: 1px solid #ccc;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
+    margin: 10px 0 0 10px;
     .show-config-area {
       width: 100%;
       margin-left: 30px;
@@ -274,6 +278,12 @@ export default {
   }
   .area-main {
     margin-top: 20px;
+  }
+  .tab-ul {
+    .tabActive {
+      height: 24px;
+      border-bottom: 1px solid rgb(250, 75, 75);
+    }
   }
 }
 </style>

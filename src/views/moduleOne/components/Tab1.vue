@@ -9,16 +9,15 @@
 import LgEacharts from "@/components/LgEacharts";
 export default {
   name: "Tab1",
-
   components: {
     LgEacharts
   },
   data() {
     return {
-      //柱状图
+      //柱状图-介绍了部分echarts配置项的功能,后期可以继续完善配置项说明
       options: {
         title: {
-          text: "ECharts", //图标标题
+          text: "能力匹配", //图标标题
           left: "center" //图标标题展示方式
         },
         tooltip: {
@@ -28,6 +27,10 @@ export default {
             // 坐标轴指示器，坐标轴触发有效
             type: "shadow" // 默认为直线，可选为：'line' | 'shadow'
           }
+        },
+        grid: {
+          top: 40, //图表距离容器上边界40像素
+          bottom: "10%" //图表距离容器下边界30像素
         },
         xAxis: {
           data: ["执政能力", "武力值", "人际关系处理", "忽悠能力"],

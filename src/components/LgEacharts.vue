@@ -52,6 +52,7 @@ export default {
     height: 300px;
     border: 1px solid #ccc;
     border-radius: 10px;
+    padding: 10px;
   }
 }
 </style>
