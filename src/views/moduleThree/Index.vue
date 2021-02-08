@@ -32,21 +32,21 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("moduleFourStore", ["list"])
+    ...mapGetters("moduleThreeStore", ["list"])
   },
   created() {
     this.getList();
   },
   methods: {
     getList() {
-      this.$store.dispatch("moduleFourStore/find", {
+      this.$store.dispatch("moduleThreeStore/find", {
         name: "888888888",
         age: 123,
         fromPage: "moduleThree"
       });
     },
     handlerOpreate() {
-      this.$store.commit("moduleFourStore/LIST", this.newList);
+      this.$store.commit("moduleThreeStore/LIST", this.newList);
     },
     handlerOReset() {
       this.getList();

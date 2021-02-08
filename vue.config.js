@@ -5,7 +5,7 @@ const devEnv = require("./config/dev.env.js"); // 本地环境
 const proEnv = require("./config/pro.env"); // 生产环境
 const testEnv = require("./config/test.env"); // 测试环境
 const env = process.env.NODE_ENV;
-let target = ""; // 代理的路径
+let target = "http://127.0.0.1:7001"; // 代理的路径
 let dist = "dist"; // 生产和测试环境生成的文件放置
 if (env === "production") {
   // 生产环境
@@ -19,6 +19,7 @@ if (env === "production") {
   // 本地环境
   target = devEnv.hosturl;
 }
+console.log(target, 111111111);
 module.exports = {
   publicPath: "/", // 部署应用包时的基本 URL。
   outputDir: dist, // 当运行 vue-cli-service build 时生成的生产环境构建文件的目录。-测试时生成在tes文件夹下,-生成环境生成在dist文件下
@@ -55,11 +56,11 @@ module.exports = {
     https: false, // 配置默认启动的是http还是https
     proxy: {
       "/api": {
-        target: target, // 代理的第一个路径
-        ws: true,
+        target: target, // 代理的第一个路径,
+
         changeOrigin: true,
         pathRewrite: {
-          "^/api": "https://www.baidu.com/" // 代理重写
+          "^/api": "/api" // 代理重写
         }
       }
     }

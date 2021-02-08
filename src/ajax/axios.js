@@ -1,5 +1,6 @@
 import axios from "axios";
-import moduleOneMock from "./moduleThreeMock.json";
+// import moduleOneMock from "./moduleThreeMock.json";
+import { Message } from "element-ui";
 const instance = axios.create({
   baseURL: "",
   timeout: 3000
@@ -31,27 +32,34 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   function(response) {
     console.log("请求成功啦...", response);
-    const { fromPage } = response.config.params;
-    const arr = [
-      {
-        mock: moduleOneMock,
-        page: "moduleThree"
-      }
-    ];
-    let mockList;
-    let obj = arr.find(item => item.page === fromPage);
-
-    if (obj) {
-      mockList = obj.mock;
-    } else {
-      mockList = [];
+    if (response.status === 200) {
+      Message.success("请求后台数据成功!");
+      return response.data;
     }
-    return {
-      status: 200,
-      data: mockList
-    };
+
+    // //mock假数据
+    // const { fromPage } = response.config.params;
+    // const arr = [
+    //   {
+    //     mock: moduleOneMock,
+    //     page: "moduleThree"
+    //   }
+    // ];
+    // let mockList;
+    // let obj = arr.find(item => item.page === fromPage);
+
+    // if (obj) {
+    //   mockList = obj.mock;
+    // } else {
+    //   mockList = [];
+    // }
+    // return {
+    //   status: 200,
+    //   data: mockList
+    // };
   },
   function(error) {
+    Message.error("请求接口失败!");
     return Promise.reject(error);
   }
 );
