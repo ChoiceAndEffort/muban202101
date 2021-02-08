@@ -2,7 +2,10 @@
   <div class="module-three">
     <ul>
       <li v-for="item in list" :key="item.age">
-        {{ item.name }}
+        <span>{{ item.name }}</span>
+        <span>{{ item.time }}年</span>
+        <span>{{ item.famous }}皇帝</span>
+        <span>{{ item.logo }}</span>
       </li>
     </ul>
     <div style="display:flex;">
