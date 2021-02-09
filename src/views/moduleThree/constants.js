@@ -41,5 +41,10 @@ export const columns = [
   {
     prop: "logo",
     label: "口号"
+  },
+  {
+    columnType: "slot",
+    slotName: "operation",
+    label: "操作"
   }
 ];

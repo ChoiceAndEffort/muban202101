@@ -32,6 +32,14 @@ const actions = {
       dispatch("find");
     }
     return res;
+  },
+  delete: async ({ dispatch }, params) => {
+    const res = await api.deleteData(params);
+    if (res.status === 200) {
+      Message.success(res.message || "删除成功!");
+      dispatch("find");
+    }
+    return res;
   }
 };
 

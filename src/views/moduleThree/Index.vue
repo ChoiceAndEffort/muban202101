@@ -21,7 +21,19 @@
       :total="list && list.length"
       @handleCurrentChange="handleCurrentChange"
       @handleSizeChange="handleSizeChange"
-    ></lg-table>
+    >
+      <template v-slot:operation="scope">
+        <el-button @click="handleEditClick(scope.row)" type="text" size="small"
+          >编辑</el-button
+        >
+        <el-button
+          @click="handleDeleteClick(scope.row)"
+          type="text"
+          size="small"
+          >删除</el-button
+        >
+      </template>
+    </lg-table>
     <el-dialog
       :title="dialogTitle"
       :visible.sync="dialogFormVisible"
@@ -102,6 +114,12 @@ export default {
     handleSizeChange(size) {
       this.filters.pageSize = size;
       this.filters.pageNum = 1;
+    },
+    handleEditClick(row) {
+      console.log(row, "编辑");
+    },
+    handleDeleteClick({ id }) {
+      this.$store.dispatch("moduleThreeStore/delete", { id });
     }
   }
 };
