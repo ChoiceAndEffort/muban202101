@@ -31,6 +31,7 @@ const actions = {
       Message.success(res.message || "新增数据成功!");
       dispatch("find");
     }
+    return res;
   }
 };
 
