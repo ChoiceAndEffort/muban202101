@@ -7,19 +7,20 @@
       <btn-operate @click="handlerRouterPush" btnName="跳到子模块" />
     </div>
 
-    <!-- <ul>
-      <li v-for="item in list" :key="item.age">
-        <span class="item-li ">{{ item.name }}</span>
-        <span class="item-li">{{ item.time }}年</span>
-        <span class="item-li">{{ item.famous }}皇帝</span>
-        <span class="item-li">{{ item.logo }}</span>
-      </li>
-    </ul> -->
     <lg-table
+      :height="800"
       :columns="columns"
-      :list="list"
+      :list="
+        list.slice(
+          (filters.pageNum - 1) * filters.pageSize,
+          filters.pageNum * filters.pageSize
+        )
+      "
       :serialNum="true"
       :filters="filters"
+      :total="list && list.length"
+      @handleCurrentChange="handleCurrentChange"
+      @handleSizeChange="handleSizeChange"
     ></lg-table>
     <el-dialog
       :title="dialogTitle"
@@ -94,6 +95,13 @@ export default {
     },
     handlerChangeVisible(v) {
       this.dialogFormVisible = v;
+    },
+    handleCurrentChange(page) {
+      this.filters.pageNum = page;
+    },
+    handleSizeChange(size) {
+      this.filters.pageSize = size;
+      this.filters.pageNum = 1;
     }
   }
 };

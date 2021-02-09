@@ -275,5 +275,8 @@ export default {
 </script>
 <style lang="scss" scope>
 .lg-table {
+  .pagination-container {
+    margin-top: 20px;
+  }
 }
 </style>
