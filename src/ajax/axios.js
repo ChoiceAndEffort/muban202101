@@ -8,7 +8,7 @@ const instance = axios.create({
 // 拦截器
 instance.interceptors.request.use(
   function(config) {
-    console.log("正在发送请求哦..."); // 添加loading效果
+    // console.log("正在发送请求哦..."); // 添加loading效果
     // 登录流程控制中，根据本地是否存在token判断用户的登录情况
     // 但是即使token存在，也有可能token是过期的，所以在每次的请求头中携带token
     // 后台根据携带的token判断用户的登录情况，并返回给我们对应的状态码
@@ -31,9 +31,9 @@ instance.interceptors.request.use(
 // Add a response interceptor
 instance.interceptors.response.use(
   function(response) {
-    console.log("请求成功啦...", response);
+    // console.log("请求成功啦...", response);
     if (response.status === 200) {
-      Message.success("请求后台数据成功!");
+      //   Message.success("请求后台数据成功!");
       return response.data;
     }
 

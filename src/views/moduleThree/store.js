@@ -1,5 +1,6 @@
 import * as api from "./api";
 import oneFirst from "./first/store";
+import { Message } from "element-ui";
 const state = {
   list: [],
   item: {}
@@ -22,6 +23,13 @@ const actions = {
     const res = await api.findData(params);
     if (res.status === 200) {
       commit("LIST", res.data.list);
+    }
+  },
+  add: async ({ dispatch }, params) => {
+    const res = await api.addData(params);
+    if (res.status === 200) {
+      Message.success(res.message || "新增数据成功!");
+      dispatch("find");
     }
   }
 };

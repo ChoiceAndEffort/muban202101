@@ -1,2 +1,3 @@
 import Vue from "vue";
-export const findData = data => Vue.ajax.get("/api/findUsersList", data);
+export const findData = params => Vue.ajax.get("/api/findUsers", params);
+export const addData = params => Vue.ajax.get("/api/addUsers", params);
