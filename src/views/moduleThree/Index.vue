@@ -7,44 +7,27 @@
       <btn-operate @click="handlerRouterPush" btnName="跳到子模块" />
     </div>
 
-    <ul>
+    <!-- <ul>
       <li v-for="item in list" :key="item.age">
         <span class="item-li ">{{ item.name }}</span>
         <span class="item-li">{{ item.time }}年</span>
         <span class="item-li">{{ item.famous }}皇帝</span>
         <span class="item-li">{{ item.logo }}</span>
       </li>
-    </ul>
-
+    </ul> -->
+    <lg-table
+      :columns="columns"
+      :list="list"
+      :serialNum="true"
+      :filters="filters"
+    ></lg-table>
     <el-dialog
       :title="dialogTitle"
       :visible.sync="dialogFormVisible"
-      :rules="rules"
       v-if="dialogFormVisible"
+      :close-on-click-modal="false"
     >
-      <el-form :model="formData" ref="ruleForm" :rules="rules">
-        <el-form-item label="朝代名字" prop="name">
-          <el-input v-model.trim="formData.name" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="存在时间" prop="time">
-          <el-input v-model.trim="formData.time" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="开国皇帝名字" prop="famous">
-          <el-input
-            v-model.trim="formData.famous"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item label="口号" prop="logo">
-          <el-input v-model.trim="formData.logo" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="handlerConfirm('ruleForm')"
-          >确 定</el-button
-        >
-      </div>
+      <publice @update="handlerChangeVisible" />
     </el-dialog>
     <router-view></router-view>
   </div>
@@ -52,7 +35,8 @@
 <script>
 import { mapGetters } from "vuex";
 import BtnOperate from "@/utils/btnOperate";
-import { rules } from "./constants";
+import Publice from "./components/Publice";
+import { columns } from "./constants";
 const newList = [
   {
     name: "张安",
@@ -63,24 +47,23 @@ const newList = [
     age: 18
   }
 ];
-const formData = {
-  name: "",
-  time: "",
-  famous: "",
-  logo: ""
-};
+
 export default {
   data() {
     return {
+      columns,
       newList: JSON.parse(JSON.stringify(newList)),
       dialogFormVisible: false,
-      formData: Object.assign({}, formData),
       dialogTitle: "新增",
-      rules
+      filters: {
+        pageNum: 1,
+        pageSize: 20
+      }
     };
   },
   components: {
-    BtnOperate
+    BtnOperate,
+    Publice
   },
   computed: {
     ...mapGetters("moduleThreeStore", ["list"])
@@ -109,16 +92,8 @@ export default {
       this.dialogFormVisible = true;
       this.dialogTitle = "新增";
     },
-    async handlerConfirm(formName) {
-      const validate = await this.$refs[formName].validate().catch(() => false);
-      if (validate) {
-        this.$store
-          .dispatch("moduleThreeStore/add", this.formData)
-          .finally(() => {
-            this.dialogFormVisible = false;
-            this.formData = Object.assign({}, formData);
-          });
-      }
+    handlerChangeVisible(v) {
+      this.dialogFormVisible = v;
     }
   }
 };

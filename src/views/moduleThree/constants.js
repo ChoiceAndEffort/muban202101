@@ -24,3 +24,22 @@ export const rules = {
     }
   ]
 };
+
+export const columns = [
+  {
+    prop: "name",
+    label: "朝代"
+  },
+  {
+    prop: "time",
+    label: "经历时间"
+  },
+  {
+    prop: "famous",
+    label: "皇帝"
+  },
+  {
+    prop: "logo",
+    label: "口号"
+  }
+];

@@ -12,6 +12,10 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
 
+//注册全局组件
+import lgTable from "@/components/lgTable";
+Vue.component("lgTable", lgTable);
+
 Vue.config.productionTip = false;
 Vue.ajax = Vue.prototype.$ajax = ajax;
 new Vue({
