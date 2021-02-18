@@ -25,18 +25,26 @@ const actions = {
       commit("LIST", res.data.list);
     }
   },
-  add: async ({ dispatch }, params) => {
-    const res = await api.addData(params);
+  add: async ({ dispatch }, data) => {
+    const res = await api.addData(data);
     if (res.status === 200) {
       Message.success(res.message || "新增数据成功!");
       dispatch("find");
     }
     return res;
   },
-  delete: async ({ dispatch }, params) => {
-    const res = await api.deleteData(params);
+  delete: async ({ dispatch }, data) => {
+    const res = await api.deleteData(data);
     if (res.status === 200) {
       Message.success(res.message || "删除成功!");
+      dispatch("find");
+    }
+    return res;
+  },
+  update: async ({ dispatch }, data) => {
+    const res = await api.updateData(data);
+    if (res.status === 200) {
+      Message.success(res.message || "修改成功!");
       dispatch("find");
     }
     return res;

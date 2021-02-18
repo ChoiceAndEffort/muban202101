@@ -40,7 +40,11 @@
       v-if="dialogFormVisible"
       :close-on-click-modal="false"
     >
-      <publice @update="handlerChangeVisible" />
+      <publice
+        @update="handlerChangeVisible"
+        :fromPage="fromPage"
+        :init-data="initData"
+      />
     </el-dialog>
     <router-view></router-view>
   </div>
@@ -71,7 +75,9 @@ export default {
       filters: {
         pageNum: 1,
         pageSize: 20
-      }
+      },
+      fromPage: 1, //1-新增,2-修改
+      initData: undefined //修改的初始数据
     };
   },
   components: {
@@ -104,6 +110,7 @@ export default {
     handlerAdd() {
       this.dialogFormVisible = true;
       this.dialogTitle = "新增";
+      this.fromPage = 1;
     },
     handlerChangeVisible(v) {
       this.dialogFormVisible = v;
@@ -116,7 +123,10 @@ export default {
       this.filters.pageNum = 1;
     },
     handleEditClick(row) {
-      console.log(row, "编辑");
+      this.dialogFormVisible = true;
+      this.dialogTitle = "编辑";
+      this.fromPage = 2;
+      this.initData = row;
     },
     handleDeleteClick({ id }) {
       this.$store.dispatch("moduleThreeStore/delete", { id });

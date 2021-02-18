@@ -68,9 +68,6 @@
           :align="item.align || align"
           :header-align="item.headAlign || align"
           :fixed="item.fixed"
-          :render-header="
-            item.showRenderHeader ? renderHeader : handlerRenderHeader
-          "
         >
           <template slot-scope="scope">
             <slot :name="item.slotName" :row="scope.row" :idx="scope.$index" />
@@ -88,9 +85,6 @@
           :show-overflow-tooltip="item.showTips"
           :sortable="item.sortable"
           :sort-by="item.sortBy"
-          :render-header="
-            item.showRenderHeader ? renderHeader : handlerRenderHeader
-          "
         >
           <template slot-scope="scope">
             <span v-if="item.formatter">
@@ -266,9 +260,6 @@ export default {
     },
     handleCurrentChange(val) {
       this.$emit("handleCurrentChange", val);
-    },
-    handlerRenderHeader(h, { column, $index }) {
-      return column.label;
     }
   }
 };

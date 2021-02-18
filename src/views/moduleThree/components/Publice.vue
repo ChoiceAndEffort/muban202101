@@ -34,6 +34,18 @@ const formData = {
 export default {
   name: "Publice",
   components: {},
+  props: {
+    fromPage: {
+      type: Number,
+      required: false,
+      default: () => 1
+    },
+    initData: {
+      type: Object,
+      required: false,
+      default: () => {}
+    }
+  },
   data() {
     return {
       formData: Object.assign({}, formData),
@@ -46,16 +58,29 @@ export default {
     async handlerConfirm(formName) {
       const validate = await this.$refs[formName].validate().catch(() => false);
       if (validate) {
-        this.$store
-          .dispatch("moduleThreeStore/add", this.formData)
-          .finally(() => {
-            this.$emit("update", false);
-            this.formData = Object.assign({}, formData);
-          });
+        if (this.fromPage !== 1) {
+          this.$store
+            .dispatch("moduleThreeStore/update", this.formData)
+            .finally(() => {
+              this.$emit("update", false);
+              this.formData = Object.assign({}, formData);
+            });
+        } else {
+          this.$store
+            .dispatch("moduleThreeStore/add", this.formData)
+            .finally(() => {
+              this.$emit("update", false);
+              this.formData = Object.assign({}, formData);
+            });
+        }
       }
     }
   },
-  created() {},
+  created() {
+    if (this.fromPage === 2) {
+      this.formData = Object.assign({}, this.initData);
+    }
+  },
   mounted() {}
 };
 </script>
