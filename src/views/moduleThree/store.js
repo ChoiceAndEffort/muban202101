@@ -31,6 +31,9 @@ const actions = {
       Message.success(res.message || "新增数据成功!");
       dispatch("find");
     }
+    if (res.status === 20000) {
+      Message.warning(res.message);
+    }
     return res;
   },
   delete: async ({ dispatch }, data) => {
