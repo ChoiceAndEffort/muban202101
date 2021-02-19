@@ -67,10 +67,10 @@ export default {
       newList: JSON.parse(JSON.stringify(newList)),
       dialogFormVisible: false,
       dialogTitle: "新增",
-      filters: {
-        page: 1,
-        pageSize: 10
-      },
+      //   filters: {
+      //     page: 1,
+      //     pageSize: 10
+      //   },
       fromPage: 1, //1-新增,2-修改
       initData: undefined, //修改的初始数据
       loading: false
@@ -81,7 +81,7 @@ export default {
     Publice
   },
   computed: {
-    ...mapGetters("moduleThreeStore", ["list", "total"])
+    ...mapGetters("moduleThreeStore", ["list", "total", "filters"])
   },
   created() {
     this.getList();
@@ -89,11 +89,9 @@ export default {
   methods: {
     getList() {
       this.loading = true;
-      this.$store
-        .dispatch("moduleThreeStore/find", this.filters)
-        .finally(() => {
-          this.loading = false;
-        });
+      this.$store.dispatch("moduleThreeStore/find").finally(() => {
+        this.loading = false;
+      });
     },
     handlerOpreate() {
       this.$store.commit("moduleThreeStore/LIST", this.newList);

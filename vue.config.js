@@ -19,7 +19,6 @@ if (env === "production") {
   // 本地环境
   target = devEnv.hosturl;
 }
-console.log(target, 111111111);
 module.exports = {
   publicPath: "/", // 部署应用包时的基本 URL。
   outputDir: dist, // 当运行 vue-cli-service build 时生成的生产环境构建文件的目录。-测试时生成在tes文件夹下,-生成环境生成在dist文件下

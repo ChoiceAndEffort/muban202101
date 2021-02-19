@@ -20,7 +20,12 @@ instance.interceptors.request.use(
     config.headers = {
       "Content-Type": "application/json"
     };
-
+    if (config.method === "get") {
+      config.params = {
+        timeStamp: Date.now(),
+        ...config.params
+      };
+    }
     return config;
   },
   function(error) {
