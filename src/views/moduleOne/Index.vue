@@ -21,8 +21,8 @@
         </div>
       </div>
       <div class="config-area">
-        <div class="operate-config">
-          <btn-operate @click="handlerShowConfig" btnName="配置区域" />
+        <div class="operate-config" style="width:100px;">
+          <btn-operate @click="handlerShowConfig" btnName="配置" />
           <lg-drawer :show-lg-drawer.sync="showLgDrawer">
             <drag-config @update="handlerChangeDragList" />
           </lg-drawer>

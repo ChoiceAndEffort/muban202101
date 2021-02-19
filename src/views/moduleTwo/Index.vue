@@ -19,7 +19,7 @@ export default {
     return {
       styleObj: {
         "--image": `url(
-          "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2482227849,285348882&fm=15&gp=0.jpg"
+          "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2875045373,3273502502&fm=26&gp=0.jpg"
         )`,
         "--opacity": 0.8
       }
@@ -35,7 +35,7 @@ export default {
     changeColor() {
       this.styleObj[
         "--image"
-      ] = `url( "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2903650673,4221977739&fm=26&gp=0.jpg")`;
+      ] = `url( "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2888327627,1456753175&fm=26&gp=0.jpg")`;
       this.styleObj["--opacity"] = 0.3;
     }
   }
@@ -48,9 +48,6 @@ export default {
     height: 800px;
     position: relative;
     border-radius: 50px;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
   }
   .show-background-image::after {
     content: "";
@@ -58,7 +55,7 @@ export default {
     background: var(--image);
     opacity: var(--opacity);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% -50%;
     top: 0;
     bottom: 0;
     left: 0;

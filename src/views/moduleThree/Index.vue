@@ -6,19 +6,13 @@
       <btn-operate @click="handlerOReset" btnName="重置list" />
       <btn-operate @click="handlerRouterPush" btnName="跳到子模块" />
     </div>
-
     <lg-table
       :height="800"
       :columns="columns"
-      :list="
-        list.slice(
-          (filters.pageNum - 1) * filters.pageSize,
-          filters.pageNum * filters.pageSize
-        )
-      "
+      :list="list"
       :serialNum="true"
       :filters="filters"
-      :total="list && list.length"
+      :total="total"
       @handleCurrentChange="handleCurrentChange"
       @handleSizeChange="handleSizeChange"
     >
@@ -73,7 +67,7 @@ export default {
       dialogFormVisible: false,
       dialogTitle: "新增",
       filters: {
-        pageNum: 1,
+        page: 1,
         pageSize: 20
       },
       fromPage: 1, //1-新增,2-修改
@@ -85,18 +79,14 @@ export default {
     Publice
   },
   computed: {
-    ...mapGetters("moduleThreeStore", ["list"])
+    ...mapGetters("moduleThreeStore", ["list", "total"])
   },
   created() {
     this.getList();
   },
   methods: {
     getList() {
-      this.$store.dispatch("moduleThreeStore/find", {
-        name: "888888888",
-        age: 123,
-        fromPage: "moduleThree"
-      });
+      this.$store.dispatch("moduleThreeStore/find", this.filters);
     },
     handlerOpreate() {
       this.$store.commit("moduleThreeStore/LIST", this.newList);

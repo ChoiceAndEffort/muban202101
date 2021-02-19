@@ -109,7 +109,7 @@
         background
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="filters.pageNum"
+        :current-page="filters.page"
         :page-sizes="[10, 20, 30, 50]"
         :page-size="filters.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
@@ -241,7 +241,7 @@ export default {
   mounted() {},
   methods: {
     indexMethods(index) {
-      return (this.filters.pageNum - 1) * this.filters.pageSize + index + 1;
+      return (this.filters.page - 1) * this.filters.pageSize + index + 1;
     },
     getRowKeys(row) {
       return row.id;
