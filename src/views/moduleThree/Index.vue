@@ -13,6 +13,7 @@
       :serialNum="true"
       :filters="filters"
       :total="total"
+      :loading="loading"
       @handleCurrentChange="handleCurrentChange"
       @handleSizeChange="handleSizeChange"
     >
@@ -68,10 +69,11 @@ export default {
       dialogTitle: "新增",
       filters: {
         page: 1,
-        pageSize: 20
+        pageSize: 10
       },
       fromPage: 1, //1-新增,2-修改
-      initData: undefined //修改的初始数据
+      initData: undefined, //修改的初始数据
+      loading: false
     };
   },
   components: {
@@ -86,7 +88,12 @@ export default {
   },
   methods: {
     getList() {
-      this.$store.dispatch("moduleThreeStore/find", this.filters);
+      this.loading = true;
+      this.$store
+        .dispatch("moduleThreeStore/find", this.filters)
+        .finally(() => {
+          this.loading = false;
+        });
     },
     handlerOpreate() {
       this.$store.commit("moduleThreeStore/LIST", this.newList);
@@ -106,11 +113,13 @@ export default {
       this.dialogFormVisible = v;
     },
     handleCurrentChange(page) {
-      this.filters.pageNum = page;
+      this.filters.page = page;
+      this.getList();
     },
     handleSizeChange(size) {
+      this.filters.page = 1;
       this.filters.pageSize = size;
-      this.filters.pageNum = 1;
+      this.getList();
     },
     handleEditClick(row) {
       this.dialogFormVisible = true;

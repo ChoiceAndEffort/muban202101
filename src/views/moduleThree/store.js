@@ -38,6 +38,7 @@ const actions = {
       commit("LIST", res.data.list);
       commit("TOTAL", res.data.total);
     }
+    return res;
   },
   add: async ({ dispatch }, data) => {
     const res = await api.addData(data);
