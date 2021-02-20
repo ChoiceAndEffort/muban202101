@@ -1,8 +1,8 @@
 import * as api from "./api";
-
+import { Message } from "element-ui";
 const state = {
   list: [],
-  item: {}
+  item: []
 };
 const getters = {
   list: state => state.list,
@@ -22,6 +22,18 @@ const actions = {
     const res = await api.findData(params);
     if (res.status === 200) {
       commit("LIST", res.data.list);
+    }
+  },
+  updateConfig: async ({ commit }, params) => {
+    const res = await api.updateConfigData(params);
+    if (res.code === 200) {
+      Message.success(res.message || "更新配置成功!");
+    }
+  },
+  findConfig: async ({ commit }, params) => {
+    const res = await api.findConfigData(params);
+    if (res.code === 200) {
+      commit("ITEM", res.data);
     }
   }
 };

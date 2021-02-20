@@ -1,5 +1,6 @@
 <template>
   <div class="drag-config">
+    {{ item }}
     <el-checkbox-group v-model="checkList" @change="handlerChange" :max="4">
       <draggable v-model="dragList">
         <transition-group>
@@ -28,6 +29,7 @@
 
 <script>
 import draggable from "vuedraggable";
+import { mapGetters } from "vuex";
 export default {
   name: "DragConfig",
   components: {
@@ -70,6 +72,9 @@ export default {
       checkList: [1, 2, 3, 4]
     };
   },
+  computed: {
+    ...mapGetters("moduleOneStore", ["item"])
+  },
   methods: {
     handlerChange() {
       this.dragList.forEach(item => {
@@ -82,9 +87,12 @@ export default {
     },
     handlerConfirm() {
       this.$emit("update", this.dragList);
+      this.$store.dispatch("moduleOneStore/updateConfig", this.dragList);
     }
   },
-  created() {},
+  created() {
+    this.$store.dispatch("moduleOneStore/findConfig");
+  },
   mounted() {}
 };
 </script>
