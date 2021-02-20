@@ -42,18 +42,14 @@
               </div>
             </div>
             <ul class="tab-ul">
-              <template
-                v-for="(item, index) in showConfiglist.length
-                  ? showConfiglist
-                  : defaultConfigList"
-              >
+              <template v-for="(el, index) in item">
                 <li
                   :key="index"
-                  v-if="item.checked"
-                  @click="handlerOpreateConfig(item.type)"
+                  v-if="el.checked"
+                  @click="handlerOpreateConfig(el.type)"
                 >
-                  <p :class="{ tabActive: type === item.type }">
-                    {{ item.label }}
+                  <p :class="{ tabActive: type === el.type }">
+                    {{ el.label }}
                   </p>
                 </li>
               </template>
@@ -96,39 +92,7 @@ export default {
       scrollList, //头部动画滚动展示的列表
       INFOMATION,
       showLgDrawer: false, //是否展示抽屉
-      defaultConfigList: [
-        {
-          label: "语文课程",
-          checked: true,
-          type: 1
-        },
-        {
-          label: "数学课程",
-          checked: true,
-          type: 2
-        },
-        {
-          label: "英语课程",
-          checked: true,
-          type: 3
-        },
-        {
-          label: "物理课程",
-          checked: true,
-          type: 4
-        },
-        {
-          label: "化学课程",
-          checked: false,
-          type: 5
-        },
-        {
-          label: "体育课程",
-          checked: false,
-          type: 6
-        }
-      ],
-      showConfiglist: [], //展示配置的数据
+
       type: 1 //区分展示内容
     };
   },
@@ -141,8 +105,7 @@ export default {
       this.showLgDrawer = true;
     },
     //关闭配置抽屉给页面传递数据
-    handlerChangeDragList(value) {
-      this.showConfiglist = value;
+    handlerChangeDragList() {
       this.showLgDrawer = false;
     },
     //点击展示配置的区域
@@ -150,7 +113,9 @@ export default {
       this.type = type;
     }
   },
-  created() {}
+  created() {
+    this.$store.dispatch("moduleOneStore/findConfig");
+  }
 };
 </script>
 <style lang="scss" scoped>

@@ -1,10 +1,9 @@
 <template>
   <div class="drag-config">
-    {{ item }}
     <el-checkbox-group v-model="checkList" @change="handlerChange" :max="4">
       <draggable v-model="dragList">
         <transition-group>
-          <div v-for="element in dragList" :key="element.type">
+          <div v-for="element in item" :key="element.type">
             <div class="item-edit">
               <div class="drag-icon">
                 <img src="@/assets/images/drag.png" alt="" srcset="" />
@@ -37,62 +36,43 @@ export default {
   },
   data() {
     return {
-      dragList: [
-        {
-          label: "语文课程",
-          checked: false,
-          type: 1
-        },
-        {
-          label: "数学课程",
-          checked: false,
-          type: 2
-        },
-        {
-          label: "英语课程",
-          checked: false,
-          type: 3
-        },
-        {
-          label: "物理课程",
-          checked: false,
-          type: 4
-        },
-        {
-          label: "化学课程",
-          checked: false,
-          type: 5
-        },
-        {
-          label: "体育课程",
-          checked: false,
-          type: 6
-        }
-      ],
-      checkList: [1, 2, 3, 4]
+      dragList: [],
+      checkList: []
     };
   },
   computed: {
     ...mapGetters("moduleOneStore", ["item"])
   },
+  watch: {
+    item: {
+      handler(nv) {
+        this.dragList = [...nv];
+        this.checkList = nv.filter(item => item.checked).map(el => el.type);
+        console.log(this.checkList);
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   methods: {
     handlerChange() {
       this.dragList.forEach(item => {
         if (this.checkList.includes(item.type)) {
-          item.checked = true;
+          item.checked = 1;
           return;
         }
-        item.checked = false;
+        item.checked = 0;
       });
     },
     handlerConfirm() {
-      this.$emit("update", this.dragList);
-      this.$store.dispatch("moduleOneStore/updateConfig", this.dragList);
+      this.$store
+        .dispatch("moduleOneStore/updateConfig", this.dragList)
+        .finally(() => {
+          this.$emit("update", false);
+        });
     }
   },
-  created() {
-    this.$store.dispatch("moduleOneStore/findConfig");
-  },
+  created() {},
   mounted() {}
 };
 </script>
