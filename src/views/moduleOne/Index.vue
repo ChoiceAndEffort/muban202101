@@ -45,7 +45,7 @@
               <template v-for="(el, index) in item">
                 <li
                   :key="index"
-                  v-if="el.checked"
+                  v-if="!!el.checked"
                   @click="handlerOpreateConfig(el.type)"
                 >
                   <p :class="{ tabActive: type === el.type }">

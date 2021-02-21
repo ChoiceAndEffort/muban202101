@@ -3,7 +3,7 @@
     <el-checkbox-group v-model="checkList" @change="handlerChange" :max="4">
       <draggable v-model="dragList">
         <transition-group>
-          <div v-for="element in item" :key="element.type">
+          <div v-for="element in dragList" :key="element.type">
             <div class="item-edit">
               <div class="drag-icon">
                 <img src="@/assets/images/drag.png" alt="" srcset="" />
@@ -29,6 +29,7 @@
 <script>
 import draggable from "vuedraggable";
 import { mapGetters } from "vuex";
+import { cloneDeep } from "lodash";
 export default {
   name: "DragConfig",
   components: {
@@ -43,17 +44,7 @@ export default {
   computed: {
     ...mapGetters("moduleOneStore", ["item"])
   },
-  watch: {
-    item: {
-      handler(nv) {
-        this.dragList = [...nv];
-        this.checkList = nv.filter(item => item.checked).map(el => el.type);
-        console.log(this.checkList);
-      },
-      deep: true,
-      immediate: true
-    }
-  },
+
   methods: {
     handlerChange() {
       this.dragList.forEach(item => {
@@ -72,7 +63,12 @@ export default {
         });
     }
   },
-  created() {},
+  created() {
+    this.dragList = cloneDeep(this.item);
+    this.checkList = cloneDeep(this.item)
+      .filter(element => element.checked)
+      .map(el => el.type);
+  },
   mounted() {}
 };
 </script>

@@ -76,11 +76,6 @@ export default {
     this.$refs["tab2-content"].addEventListener("scroll", this.handleScroll); // 监听div的滚动事件，然后用handleScroll这个方法进行相应的处理
   },
   destroyed() {
-    // this.$refs["tab2-content"].removeEventListener(
-    //   "scroll",
-    //   this.handleScroll,
-    //   true
-    // );
     window.removeEventListener("scroll", this.handleScroll, true);
   }
 };
@@ -92,6 +87,8 @@ export default {
     text-align: center;
   }
   .tab2-content {
+    border-radius: 10px;
+    padding: 10px;
     position: relative;
     height: 485px;
     overflow-y: auto;

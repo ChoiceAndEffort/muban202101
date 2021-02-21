@@ -24,10 +24,11 @@ const actions = {
       commit("LIST", res.data.list);
     }
   },
-  updateConfig: async ({ commit }, params) => {
+  updateConfig: async ({ dispatch }, params) => {
     const res = await api.updateConfigData(params);
     if (res.code === 200) {
       Message.success(res.message || "更新配置成功!");
+      dispatch("findConfig");
     }
   },
   findConfig: async ({ commit }, params) => {
