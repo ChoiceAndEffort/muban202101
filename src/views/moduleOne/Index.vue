@@ -93,11 +93,20 @@ export default {
       INFOMATION,
       showLgDrawer: false, //是否展示抽屉
 
-      type: 1 //区分展示内容
+      type: undefined //区分展示内容
     };
   },
   computed: {
     ...mapGetters("moduleOneStore", ["list", "item"])
+  },
+  watch: {
+    item: {
+      handler(nv) {
+        this.type = nv[0].type;
+      },
+      deep: true,
+      immediate: true
+    }
   },
   methods: {
     //显示配置的抽屉

@@ -35,7 +35,7 @@ const actions = {
   find: async ({ commit }, params) => {
     const data = Object.assign({}, params, {}, state.filters);
     const res = await api.findData(data);
-    if (res.status === 200) {
+    if (res.code === 200) {
       commit("LIST", res.data.list);
       commit("TOTAL", res.data.total);
     }
@@ -43,18 +43,18 @@ const actions = {
   },
   add: async ({ dispatch }, data) => {
     const res = await api.addData(data);
-    if (res.status === 200) {
+    if (res.code === 200) {
       Message.success(res.message || "新增数据成功!");
       dispatch("find");
     }
-    if (res.status === 20000) {
+    if (res.code === 20000) {
       Message.warning(res.message);
     }
     return res;
   },
   delete: async ({ dispatch }, data) => {
     const res = await api.deleteData(data);
-    if (res.status === 200) {
+    if (res.code === 200) {
       Message.success(res.message || "删除成功!");
       dispatch("find");
     }
@@ -62,7 +62,7 @@ const actions = {
   },
   update: async ({ dispatch }, data) => {
     const res = await api.updateData(data);
-    if (res.status === 200) {
+    if (res.code === 200) {
       Message.success(res.message || "修改成功!");
       dispatch("find");
     }
