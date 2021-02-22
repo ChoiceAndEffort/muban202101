@@ -64,8 +64,8 @@ export default {
     }
   },
   created() {
-    this.dragList = cloneDeep(this.item);
-    this.checkList = cloneDeep(this.item)
+    this.dragList = cloneDeep(this.item.configs);
+    this.checkList = cloneDeep(this.item.configs)
       .filter(element => element.checked)
       .map(el => el.type);
   },

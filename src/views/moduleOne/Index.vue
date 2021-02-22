@@ -4,10 +4,10 @@
       <h3>欢迎来到我的世界</h3>
       <ul class="anmatioan-top">
         <li
-          v-for="(item, index) in [...scrollList, ...scrollList]"
+          v-for="(item, index) in [...item.imagesUrls, ...item.imagesUrls]"
           :key="index"
         >
-          <img :src="item.img" alt="" srcset="" class="image" />
+          <img :src="item.url" alt="" srcset="" class="image" />
           <p>{{ item.name }}</p>
         </li>
       </ul>
@@ -16,8 +16,8 @@
       <div class="xi-ding">
         <div class="xi-ding-child">
           <h6>介绍</h6>
-          <p>汉光武帝刘秀(东汉光武帝)</p>
-          <div>{{ INFOMATION }}</div>
+          <p>{{ item.infomation && item.infomation.name }}</p>
+          <div>{{ item.infomation && item.infomation.info }}</div>
         </div>
       </div>
       <div class="config-area">
@@ -42,7 +42,7 @@
               </div>
             </div>
             <ul class="tab-ul">
-              <template v-for="(el, index) in item">
+              <template v-for="(el, index) in item.configs">
                 <li
                   :key="index"
                   v-if="!!el.checked"
@@ -69,7 +69,6 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import { scrollList, INFOMATION } from "./constants";
 import BtnOperate from "@/utils/btnOperate";
 import LgDrawer from "@/components/LgDrawer";
 import DragConfig from "./components/DragConfig";
@@ -89,8 +88,6 @@ export default {
   },
   data() {
     return {
-      scrollList, //头部动画滚动展示的列表
-      INFOMATION,
       showLgDrawer: false, //是否展示抽屉
 
       type: undefined //区分展示内容
@@ -100,9 +97,9 @@ export default {
     ...mapGetters("moduleOneStore", ["list", "item"])
   },
   watch: {
-    item: {
+    "item.configs": {
       handler(nv) {
-        this.type = nv[0].type;
+        this.type = nv && nv[0] && nv[0].type;
       },
       deep: true,
       immediate: true

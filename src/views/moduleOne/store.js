@@ -2,7 +2,15 @@ import * as api from "./api";
 import { Message } from "element-ui";
 const state = {
   list: [],
-  item: []
+  item: {
+    configs: [], //配置数组
+    imagesUrls: [], //动画图片数据
+    infomation: {
+      //自我介绍
+      name: "",
+      info: ""
+    }
+  }
 };
 const getters = {
   list: state => state.list,

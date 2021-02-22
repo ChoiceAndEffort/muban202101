@@ -21,10 +21,13 @@ instance.interceptors.request.use(
       "Content-Type": "application/json"
     };
     if (config.method === "get") {
-      config.params = {
-        timeStamp: Date.now(),
-        ...config.params
-      };
+      const paramsLength = Object.keys(config.params).length; //有参数了再加上时间戳
+      if (paramsLength) {
+        config.params = {
+          timeStamp: Date.now(),
+          ...config.params
+        };
+      }
     }
     return config;
   },
