@@ -9,17 +9,17 @@ export const rules = {
       trigger: ["blur", "change"]
     }
   ],
-  famous: [
+  emperor: [
     {
       required: true,
       message: "请输入开国皇帝",
       trigger: ["blur", "change"]
     }
   ],
-  logo: [
+  city: [
     {
       required: true,
-      message: "请输入朝代口号",
+      message: "请输入朝代位置",
       trigger: ["blur", "change"]
     }
   ]
@@ -35,12 +35,12 @@ export const columns = [
     label: "经历时间"
   },
   {
-    prop: "famous",
+    prop: "emperor",
     label: "皇帝"
   },
   {
-    prop: "logo",
-    label: "口号"
+    prop: "city",
+    label: "城市"
   },
   {
     columnType: "slot",

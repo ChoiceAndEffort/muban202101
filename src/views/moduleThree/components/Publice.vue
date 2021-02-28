@@ -7,11 +7,11 @@
       <el-form-item label="存在时间" prop="time">
         <el-input v-model.trim="formData.time" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="开国皇帝名字" prop="famous">
-        <el-input v-model.trim="formData.famous" autocomplete="off"></el-input>
+      <el-form-item label="位置" prop="city">
+        <el-input v-model.trim="formData.city" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="口号" prop="logo">
-        <el-input v-model.trim="formData.logo" autocomplete="off"></el-input>
+      <el-form-item label="开国皇帝名字" prop="emperor">
+        <el-input v-model.trim="formData.emperor" autocomplete="off"></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -28,8 +28,8 @@ import { rules } from "../constants";
 const formData = {
   name: "",
   time: "",
-  famous: "",
-  logo: ""
+  emperor: "",
+  city: ""
 };
 export default {
   name: "Publice",

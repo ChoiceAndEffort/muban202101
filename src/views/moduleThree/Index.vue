@@ -18,6 +18,12 @@
       @handleSizeChange="handleSizeChange"
     >
       <template v-slot:operation="scope">
+        <el-button
+          @click="handleDetailClick(scope.row)"
+          type="text"
+          size="small"
+          >朝代详情</el-button
+        >
         <el-button @click="handleEditClick(scope.row)" type="text" size="small"
           >编辑</el-button
         >
@@ -35,10 +41,22 @@
       v-if="dialogFormVisible"
       :close-on-click-modal="false"
     >
+      <div class="detail" v-if="isDetail">
+        <ul>
+          <li v-for="(el, index) in item.emperorInfo" :key="index">
+            <dl>
+              <dt><span>姓名:</span>{{ el.name }}</dt>
+              <dd><span>称号:</span>{{ el.posthumousTitle }}</dd>
+              <dd><span>时间:</span>{{ el.start_time }}{{ el.endTime }}</dd>
+            </dl>
+          </li>
+        </ul>
+      </div>
       <publice
         @update="handlerChangeVisible"
         :fromPage="fromPage"
         :init-data="initData"
+        v-if="!isDetail"
       />
     </el-dialog>
     <router-view></router-view>
@@ -73,7 +91,8 @@ export default {
       //   },
       fromPage: 1, //1-新增,2-修改
       initData: undefined, //修改的初始数据
-      loading: false
+      loading: false,
+      isDetail: true
     };
   },
   components: {
@@ -81,7 +100,7 @@ export default {
     Publice
   },
   computed: {
-    ...mapGetters("moduleThreeStore", ["list", "total", "filters"])
+    ...mapGetters("moduleThreeStore", ["list", "total", "filters", "item"])
   },
   created() {
     this.getList();
@@ -106,6 +125,7 @@ export default {
       this.dialogFormVisible = true;
       this.dialogTitle = "新增";
       this.fromPage = 1;
+      this.isDetail = false;
     },
     handlerChangeVisible(v) {
       this.dialogFormVisible = v;
@@ -124,9 +144,16 @@ export default {
       this.dialogTitle = "编辑";
       this.fromPage = 2;
       this.initData = row;
+      this.isDetail = false;
     },
     handleDeleteClick({ id }) {
       this.$store.dispatch("moduleThreeStore/delete", { id });
+    },
+    handleDetailClick({ id }) {
+      this.dialogFormVisible = true;
+      this.dialogTitle = "详情";
+      this.isDetail = true;
+      this.$store.dispatch("moduleThreeStore/findOne", { id });
     }
   }
 };

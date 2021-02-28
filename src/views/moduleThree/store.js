@@ -67,6 +67,13 @@ const actions = {
       dispatch("find");
     }
     return res;
+  },
+  findOne: async ({ commit }, data) => {
+    const res = await api.findOneData(data);
+    if (res.code === 200 && res.data) {
+      commit("ITEM", res.data);
+    }
+    return res;
   }
 };
 
