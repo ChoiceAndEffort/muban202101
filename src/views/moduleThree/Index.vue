@@ -6,6 +6,7 @@
       <btn-operate @click="handlerOReset" btnName="重置list" />
       <btn-operate @click="handlerRouterPush" btnName="跳到子模块" />
     </div>
+    <h3>朝代及开国皇帝</h3>
     <lg-table
       :height="800"
       :columns="columns"
@@ -85,10 +86,6 @@ export default {
       newList: JSON.parse(JSON.stringify(newList)),
       dialogFormVisible: false,
       dialogTitle: "新增",
-      //   filters: {
-      //     page: 1,
-      //     pageSize: 10
-      //   },
       fromPage: 1, //1-新增,2-修改
       initData: undefined, //修改的初始数据
       loading: false,
@@ -160,6 +157,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .module-three {
+  h3 {
+    line-height: 36px;
+    font-weight: 600;
+  }
   li {
     margin-bottom: 10px;
   }
