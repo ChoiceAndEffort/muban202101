@@ -27,11 +27,11 @@ export const rules = {
 
 export const columns = [
   {
-    prop: "dynasty_id",
+    prop: "dynastyId",
     label: "朝代id"
   },
   {
-    prop: "emperor_id",
+    prop: "emperorId",
     label: "皇帝id"
   },
   {
@@ -43,11 +43,16 @@ export const columns = [
     label: "谥号"
   },
   {
-    prop: "start_time",
+    prop: "startTime",
     label: "起始时间"
   },
   {
     prop: "endTime",
     label: "终止时间"
+  },
+  {
+    columnType: "slot",
+    slotName: "operation",
+    label: "操作"
   }
 ];

@@ -37,6 +37,7 @@ const actions = {
       commit("LIST", res.data.list);
       commit("TOTAL", res.data.total);
     }
+    return res;
   }
 };
 
