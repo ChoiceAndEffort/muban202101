@@ -1,6 +1,6 @@
 <template>
   <div class="module-four">
-    <h3>所有皇帝-关联开国皇帝</h3>
+    <h3>多个皇帝对应一个朝代(一对多,和多对一的关系)</h3>
     <lg-table
       :height="800"
       :columns="columns"
@@ -43,7 +43,6 @@
 <script>
 import { mapGetters } from "vuex";
 import { columns } from "./constants";
-// 数据处理方法
 export default {
   data() {
     return {

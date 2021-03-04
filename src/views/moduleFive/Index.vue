@@ -1,6 +1,6 @@
 <template>
   <div class="module-five">
-    <h3>所有皇帝-关联开国皇帝</h3>
+    <h3>1个皇帝对应多个工程,1个工程对应多个皇帝</h3>
     <lg-table
       :height="800"
       :columns="columns"
@@ -11,16 +11,19 @@
       @handleCurrentChange="handleCurrentChange"
       @handleSizeChange="handleSizeChange"
     >
-      <template v-slot:operation="scope">
+      <template v-slot:empororNameCol="scope">
+        {{ scope.row.emperor_infos.map(item => item.name).join(",") }}
+      </template>
+      <!-- <template v-slot:operation="scope">
         <el-button
           @click="handleDetailClick(scope.row)"
           type="text"
           size="small"
           >朝代开国皇帝</el-button
         >
-      </template>
+      </template> -->
     </lg-table>
-    <el-dialog
+    <!-- <el-dialog
       title="皇帝-关联朝代和开国皇帝"
       :visible.sync="dialogFormVisible"
       v-if="dialogFormVisible"
@@ -37,13 +40,13 @@
           </li>
         </ul>
       </div>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
 import { columns } from "./constants";
-// 数据处理方法
+
 export default {
   data() {
     return {

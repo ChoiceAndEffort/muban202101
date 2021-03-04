@@ -35,8 +35,8 @@ const actions = {
     const res = await api.findData(data);
     if (res.code === 200) {
       console.log(res);
-      //   commit("LIST", res.data.list);
-      //   commit("TOTAL", res.data.total);
+      commit("LIST", res.data.list);
+      commit("TOTAL", res.data.total);
     }
     return res;
   }
