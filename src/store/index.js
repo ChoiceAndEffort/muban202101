@@ -4,6 +4,7 @@ import moduleFourStore from "@/views/moduleFour/store";
 import moduleThreeStore from "@/views/moduleThree/store";
 import moduleTwoStore from "@/views/moduleTwo/store";
 import moduleOneStore from "@/views/moduleOne/store";
+import moduleFiveStore from "@/views/moduleFive/store";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     moduleFourStore,
     moduleThreeStore,
     moduleTwoStore,
-    moduleOneStore
+    moduleOneStore,
+    moduleFiveStore
   }
 });

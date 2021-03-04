@@ -1,5 +1,5 @@
 <template>
-  <div class="module-four">
+  <div class="module-five">
     <h3>所有皇帝-关联开国皇帝</h3>
     <lg-table
       :height="800"
@@ -54,16 +54,12 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("moduleFourStore", ["list", "total", "filters", "item"])
+    ...mapGetters("moduleFiveStore", ["list", "total", "filters", "item"])
   },
   methods: {
     getList() {
-      this.loading = true;
-      this.$store.dispatch("moduleFourStore/find").finally(() => {
-        this.loading = false;
-      });
+      this.$store.dispatch("moduleFiveStore/find").finally(() => {});
     },
-
     handleCurrentChange(page) {
       this.filters.page = page;
       this.getList();

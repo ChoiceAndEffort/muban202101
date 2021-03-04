@@ -31,10 +31,6 @@ export const columns = [
     label: "朝代id"
   },
   {
-    prop: "emperorId",
-    label: "皇帝id"
-  },
-  {
     prop: "name",
     label: "皇帝名字"
   },

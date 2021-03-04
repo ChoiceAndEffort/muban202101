@@ -5,6 +5,7 @@ import moduleFour from "@/views/moduleFour/router";
 import moduleThree from "@/views/moduleThree/router";
 import moduleTwo from "@/views/moduleTwo/router";
 import moduleOne from "@/views/moduleOne/router";
+import moduleFive from "@/views/moduleFive/router";
 Vue.use(VueRouter);
 
 const routes = [
@@ -13,7 +14,13 @@ const routes = [
     name: "Home",
     redirect: "module-one",
     component: Home,
-    children: [...moduleFour, ...moduleThree, ...moduleTwo, ...moduleOne]
+    children: [
+      ...moduleFour,
+      ...moduleThree,
+      ...moduleTwo,
+      ...moduleOne,
+      ...moduleFive
+    ]
   }
 ];
 
