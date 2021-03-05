@@ -48,3 +48,21 @@ export const columns = [
     label: "操作"
   }
 ];
+
+export const searchList = [
+  {
+    type: "input",
+    label: "朝代",
+    valueKey: "name"
+  },
+  {
+    type: "input",
+    label: "皇帝",
+    valueKey: "emperor"
+  },
+  {
+    type: "input",
+    label: "城市",
+    valueKey: "city"
+  }
+];

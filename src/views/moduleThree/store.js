@@ -6,7 +6,10 @@ const state = {
   item: {},
   filters: {
     page: 1,
-    pageSize: 10
+    pageSize: 10,
+    city: "",
+    emperor: "",
+    name: ""
   },
   total: 0
 };

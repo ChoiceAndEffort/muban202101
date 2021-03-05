@@ -14,7 +14,9 @@ Vue.use(ElementUI);
 
 //注册全局组件
 import lgTable from "@/components/lgTable";
+import LgSearch from "@/components/LgSearch";
 Vue.component("lgTable", lgTable);
+Vue.component("lgSearch", LgSearch);
 
 Vue.config.productionTip = false;
 Vue.ajax = Vue.prototype.$ajax = ajax;

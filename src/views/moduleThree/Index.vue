@@ -6,6 +6,13 @@
       <btn-operate @click="handlerOReset" btnName="重置list" />
       <btn-operate @click="handlerRouterPush" btnName="跳到子模块" />
     </div>
+
+    <lg-search
+      :searchList="searchList"
+      :filters="filters"
+      :on-search="handleSearch"
+    >
+    </lg-search>
     <h3>朝代及开国皇帝</h3>
     <lg-table
       :height="800"
@@ -67,7 +74,7 @@
 import { mapGetters } from "vuex";
 import BtnOperate from "@/utils/btnOperate";
 import Publice from "./components/Publice";
-import { columns } from "./constants";
+import { columns, searchList } from "./constants";
 const newList = [
   {
     name: "张安",
@@ -89,7 +96,9 @@ export default {
       fromPage: 1, //1-新增,2-修改
       initData: undefined, //修改的初始数据
       loading: false,
-      isDetail: true
+      isDetail: true,
+      //   filters: {},
+      searchList
     };
   },
   components: {
@@ -151,6 +160,9 @@ export default {
       this.dialogTitle = "详情";
       this.isDetail = true;
       this.$store.dispatch("moduleThreeStore/findOne", { id });
+    },
+    handleSearch() {
+      this.getList();
     }
   }
 };
