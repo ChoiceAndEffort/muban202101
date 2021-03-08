@@ -5,6 +5,7 @@ import moduleThreeStore from "@/views/moduleThree/store";
 import moduleTwoStore from "@/views/moduleTwo/store";
 import moduleOneStore from "@/views/moduleOne/store";
 import moduleFiveStore from "@/views/moduleFive/store";
+import moduleSixStore from "@/views/moduleSix/store";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     moduleThreeStore,
     moduleTwoStore,
     moduleOneStore,
-    moduleFiveStore
+    moduleFiveStore,
+    moduleSixStore
   }
 });

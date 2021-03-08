@@ -6,6 +6,7 @@ import moduleThree from "@/views/moduleThree/router";
 import moduleTwo from "@/views/moduleTwo/router";
 import moduleOne from "@/views/moduleOne/router";
 import moduleFive from "@/views/moduleFive/router";
+import moduleSix from "@/views/moduleSix/router";
 Vue.use(VueRouter);
 
 const routes = [
@@ -19,7 +20,8 @@ const routes = [
       ...moduleThree,
       ...moduleTwo,
       ...moduleOne,
-      ...moduleFive
+      ...moduleFive,
+      ...moduleSix
     ]
   }
 ];
