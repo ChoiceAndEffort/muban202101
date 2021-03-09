@@ -52,13 +52,16 @@ export default {
       const offsetW =
         document.documentElement.offsetWidth || document.body.offsetWidth;
 
-      // 设置小球移动的位移
+      // 设置小球移动的终点位移
       setTimeout(() => {
         el.style.transform = `translate3d(${offsetW / 2 - 20}px,-${offsetH / 2 -
           20}px,0)`;
+
         // 增加贝塞尔曲线
-        el.style.transition =
-          "transform 0.8s cubic-bezier(0.3, -0.25, 0.7, -0.15)";
+        // el.style.transition =
+        //   "transform 0.8s cubic-bezier(0.3, -0.25, 0.7, -0.15)";
+
+        // 设置小球的移动路径
         el.style.transition = "transform 0.8s linear";
         this.showFlySpu = false;
         // 设置透明度
